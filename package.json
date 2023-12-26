@@ -12,11 +12,12 @@
     "@solidjs/start": "^0.4.0-alpha.11",
     "@vinxi/plugin-mdx": "^3.6.5",
     "autoprefixer": "^10.4.14",
+    "gray-matter": "^4.0.3",
     "postcss": "^8.4.26",
     "solid-js": "^1.8.7",
+    "solid-mdx": "^0.0.7",
     "tailwindcss": "^3.3.3",
-    "vinxi": "0.0.52",
-    "solid-mdx": "^0.0.7"
+    "vinxi": "0.0.52"
   },
   "engines": {
     "node": ">=18"

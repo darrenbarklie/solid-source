@@ -1,6 +1,6 @@
 # SolidSource
 
-Powered by [`solid-start`](https://start.solidjs.com);
+Powered by [`solid-start`](https://start.solidjs.com); a [SolidJS](https://solidjs.com) metaframework.
 
 ## Getting Started
 
