@@ -7,6 +7,7 @@
 
 ## [v0.0.0] 2023-12-29 – Deploy
 
+- Add `netlify.toml` file, define neflity directory
 - Configure [`vite.config.ts`](https://start.solidjs.com/api/vite) for [Netlify](https://www.netlify.com/) deployment
 
 ## [v0.0.0] 2023-12-25 – Content
