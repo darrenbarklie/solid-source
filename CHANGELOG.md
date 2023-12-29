@@ -5,6 +5,10 @@
 - [ ] Loop over MDX content
 - [ ] Understand type safety with SolidJS
 
+## [v0.0.0] 2023-12-29 – Deploy
+
+- Configure [`vite.config.ts`](https://start.solidjs.com/api/vite) for [Netlify](https://www.netlify.com/) deployment
+
 ## [v0.0.0] 2023-12-25 – Content
 
 - Integrate [`gray-matter`](https://github.com/jonschlinkert/gray-matter/)
