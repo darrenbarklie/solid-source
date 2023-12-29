@@ -1,2 +1,3 @@
 [build]
-publish = "netlify"
+base = "/"
+publish = "dist"
