@@ -7,7 +7,7 @@ export default defineConfig({
   start: {
     extensions: ['mdx', 'md'],
     server: {
-      preset: 'netlifyEdge',
+      preset: 'netlify_edge',
     },
   },
   plugins: [
