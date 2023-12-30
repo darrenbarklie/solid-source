@@ -4,24 +4,24 @@ import matter from 'gray-matter'
 
 // const getFileContent = cache(async () => {
 //   'use server'
-// const dirPath = 'src/routes/video/'
+//   const dirPath = 'src/routes/video/'
 
-// READ SINGLE FILE SYNC // WORKS
-// const fileContent = fs.readFileSync(filePath, 'utf8') // WORKS
+//   // READ SINGLE FILE SYNC // WORKS
+//   // const fileContent = fs.readFileSync(filePath, 'utf8') // WORKS
 
-// READ SINGLE FILE ASYNC // WORKS
-// return await fs
-//   .readFile(filePath, {
-//     encoding: 'utf8',
-//   })
-//   .then((data) => {
-//     return data
-//   })
-//   .catch((error) => {
-//     console.error(`Error reading files: ${error}`)
-//   })
+//   // READ SINGLE FILE ASYNC // WORKS
+//   // return await fs
+//   //   .readFile(filePath, {
+//   //     encoding: 'utf8',
+//   //   })
+//   //   .then((data) => {
+//   //     return data
+//   //   })
+//   //   .catch((error) => {
+//   //     console.error(`Error reading files: ${error}`)
+//   //   })
 
-// Read MDX frontmatter // TESTING
+//   // Read MDX frontmatter // TESTING
 //   return await fs
 //     .readdir(dirPath)
 //     .then(async (data: string[]) => {
@@ -39,16 +39,25 @@ import matter from 'gray-matter'
 //     .catch((error) => console.error('Error: ' + error))
 // }, 'fileContent')
 
-// export const route = {
-//   load: () => getFileContent(),
-// }
+const getFileContent = cache(async () => {
+  'use server'
+  return 'This is a server response from getFileContent...'
+}, 'fileContent')
+
+export const route = {
+  load: () => getFileContent(),
+}
 
 export default function Page() {
-  // const fileContent = createAsync(fileContent)
+  const fileContent = createAsync(getFileContent)
+
+  console.log(fileContent())
 
   return (
     <>
-      <h1>Video Archive 123</h1>
+      <h1>Video Respository</h1>
+
+      {fileContent() && fileContent()}
 
       {/* <ul>
         {fileContent()
