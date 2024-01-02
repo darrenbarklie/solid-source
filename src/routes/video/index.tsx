@@ -1,69 +1,37 @@
-import fs from 'node:fs/promises'
 import { createAsync, cache } from '@solidjs/router'
+import type { MDXComponents } from 'mdx/types'
 import matter from 'gray-matter'
 
-// const getFileContent = cache(async () => {
-//   'use server'
-//   const dirPath = 'src/routes/video/'
-
-//   // READ SINGLE FILE SYNC // WORKS
-//   // const fileContent = fs.readFileSync(filePath, 'utf8') // WORKS
-
-//   // READ SINGLE FILE ASYNC // WORKS
-//   // return await fs
-//   //   .readFile(filePath, {
-//   //     encoding: 'utf8',
-//   //   })
-//   //   .then((data) => {
-//   //     return data
-//   //   })
-//   //   .catch((error) => {
-//   //     console.error(`Error reading files: ${error}`)
-//   //   })
-
-//   // Read MDX frontmatter // TESTING
-//   return await fs
-//     .readdir(dirPath)
-//     .then(async (data: string[]) => {
-//       const mdxFiles = data
-//         .filter((item) => /\.(mdx)$/.test(item))
-//         .map((item: string) => {
-//           const itemFilePath = `src/routes/video/${item}`
-//           const frontmatter = matter.read(itemFilePath).data
-//           return frontmatter
-//         })
-
-//       console.log(mdxFiles)
-//       return mdxFiles
-//     })
-//     .catch((error) => console.error('Error: ' + error))
-// }, 'fileContent')
-
-const getFileContent = cache(async () => {
-  'use server'
-  return 'This is a server response from getFileContent...'
-}, 'fileContent')
+const getMdxFilesFrontmatter = cache(async () => {
+  const mdxFiles = import.meta.glob(`./*.mdx`, { eager: true }) as Record<
+    string,
+    () => Promise<MDXComponents>
+  >
+  const mdxFilesFrontmatter = Object.entries(mdxFiles).map(([path]) => {
+    const absoluteFilePath = new URL(path, import.meta.url)
+    const srcIndex = absoluteFilePath.pathname.indexOf('/src')
+    const projectFilePath =
+      srcIndex !== -1 ? absoluteFilePath.pathname.substring(srcIndex) : ''
+    const frontmatter = matter.read(`./${projectFilePath}`).data
+    return frontmatter
+  })
+  return mdxFilesFrontmatter
+}, 'mdxFiles')
 
 export const route = {
-  load: () => getFileContent(),
+  load: () => getMdxFilesFrontmatter(),
 }
 
 export default function Page() {
-  const fileContent = createAsync(getFileContent)
-
-  console.log(fileContent())
+  const mdxFilesFrontmatter = createAsync(getMdxFilesFrontmatter)
 
   return (
     <>
-      <h1>Video Respository</h1>
-
-      {fileContent() && fileContent()}
-
-      {/* <ul>
-        {fileContent()
-          ? fileContent()!.map((item) => <li>{item.titleFull}</li>)
-          : ''}
-      </ul> */}
+      <h1>Video</h1>
+      <ul>
+        {mdxFilesFrontmatter() &&
+          mdxFilesFrontmatter()!.map((item) => <li>{item.titleFull}</li>)}
+      </ul>
     </>
   )
 }

@@ -2,8 +2,10 @@
 
 ## Tasklist
 
-- [ ] Loop over MDX content
-- [ ] Understand type safety with SolidJS
+## [v0.0.1] 2024-01-02 – MDX Frontmatter
+
+- Server function to fetch MDX files
+- Process MDX files to render frontmatter on archive page
 
 ## [v0.0.0] 2023-12-29 – Deploy
 

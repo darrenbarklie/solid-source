@@ -39,6 +39,11 @@ dependencies:
     specifier: 0.0.52
     version: 0.0.52
 
+devDependencies:
+  '@types/mdx':
+    specifier: ^2.0.10
+    version: 2.0.10
+
 packages:
 
   /@alloc/quick-lru@5.2.0:
@@ -1640,7 +1645,6 @@ packages:
 
   /@types/mdx@2.0.10:
     resolution: {integrity: sha512-Rllzc5KHk0Al5/WANwgSPl1/CwjqCy+AZrGd78zuK+jO9aDM6ffblZ+zIjgPNAaEBmlO0RYDvLNh7wD0zKVgEg==}
-    dev: false
 
   /@types/micromatch@4.0.6:
     resolution: {integrity: sha512-2eulCHWqjEpk9/vyic4tBhI8a9qQEl6DaK2n/sF7TweX9YESlypgKyhXMDGt4DAOy/jhLPvVrZc8pTDAMsplJA==}
